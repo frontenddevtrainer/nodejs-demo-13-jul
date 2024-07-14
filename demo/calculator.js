@@ -1,32 +1,30 @@
-const [bin, bin2, numberOne, operation, numberTwo] = process.argv;
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers"
+import chalk from "chalk";
 
-// console.log(process.argv[2]); [0, 1, 2]
+const { x, y, oper } = yargs(hideBin(process.argv)).argv
 
-// int - 5, 7, 66, 87, 3434324
-// float - 3.14, 65.89
-// parseFloat, parseInt, Number
+if(typeof x !== "number" || typeof y !== "number" || typeof oper !== "string") {
+    console.log(chalk.red("Invalid params"));
+}
 
-const numberOneFloat = Number(numberOne)
-const numberTwoFloat = Number(numberTwo)
 let result = 0;
 
-
-
-switch (operation) {
-    case "+":
-        result = numberOneFloat + numberTwoFloat
+switch (oper) {
+    case "add":
+        result = x + y
         break;
 
-    case "-":
-        result = numberOneFloat - numberTwoFloat
+    case "sub":
+        result = x - y
         break;
 
-    case "/":
-        result = numberOneFloat / numberTwoFloat
+    case "div":
+        result = x / y
         break;
 
-    case "x":
-        result = numberOneFloat * numberTwoFloat
+    case "mul":
+        result = x * y
         break;
 
     default:
